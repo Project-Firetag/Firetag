@@ -153,8 +153,8 @@ export default function Home() {
           <GoogleMap
             mapContainerStyle={containerStyle(dimensions.x)}
             center={{
-              lat: center[0],
-              lng: center[1],
+              lat: latitude,
+              lng: longitude,
             }}
             zoom={zoom}
             mapTypeId='satellite'
