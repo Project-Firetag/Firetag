@@ -30,10 +30,12 @@ export default async function postIncident(req: NextApiRequest, res: NextApiResp
                 }
             )
         )
+        console.log({true: true})
         res.json({true: true, refId})
-    } catch {
+    } catch(e) {
+        console.log({false: e})
         res.json({
-            false: false
+            false: e
         })
     }
 }

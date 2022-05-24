@@ -24,6 +24,12 @@ const modelGraphData = (d: {
 export async function getServerSideProps() {
     const [ byDate, byPlace, recentIncidents ]: any[] = await Promise.all([getIncidentsByDate(), getIncidentsByPlace(), getRecentIncidents()]);
     const reducedData = reduceData(byPlace)
+    console.log({
+        byDate,
+        byPlace,
+        recentIncidents,
+        reducedData
+    })
     return {
         props: {
             byDate,
@@ -58,6 +64,8 @@ export default function View({
       y: 0,
       x: 0
     });
+
+    console.log(recentIncidents)
 
     useEffect(() => {
         setDimensions({
@@ -129,7 +137,7 @@ export default function View({
                         </thead>
                         <tbody>
                             {
-                                data.map((row, index) => (
+                                data.map && data.map((row, index) => (
                                     <Link passHref key={`row-${index}`} href={`view/${row.slug}`}>
                                         <tr className="cursor-pointer transition-all hover:bg-[#02448677]">
                                             <td className="border-2 border-slate-500 w-56 text-center" colSpan={2}>{row.dateAndTime}</td>

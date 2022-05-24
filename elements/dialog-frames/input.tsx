@@ -61,7 +61,7 @@ export default function Input({
                 e.currentTarget.previousSibling.focus()
           }
         >
-          First name
+          Name
         </label>
       </div>
       {/* <br /> */}
