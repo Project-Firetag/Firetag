@@ -30,21 +30,22 @@ export default function Details({
         return (
             <div
             id="not-supported-container fixed"
-            style={{ height: "calc(100% - 6rem)" }}
+            style={{ height: "calc(100% - 6rem)", zIndex: "9999999999999999999999" }}
             className="w-full h-full absolute z-[9999999999999999999999]"
             >
                 <div
                     className="details dialog w-[48rem] absolute p-5 flex flex-col justify-center items-center z-[999999999999999999999999]"
                     style={{
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                    background: "rgb(0 48 255 / 25%)",
-                    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-                    backdropFilter: "blur( 5px )",
-                    WebkitBackdropFilter: "blur( 5px )",
-                    borderRadius: "10px",
-                    border: "1px solid rgba( 255, 255, 255, 0.18 )",
+                        left: "50%",
+                        top: "50%",
+                        transform: "translate(-50%, -50%)",
+                        background: "rgb(0 48 255 / 25%)",
+                        boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+                        backdropFilter: "blur( 5px )",
+                        WebkitBackdropFilter: "blur( 5px )",
+                        borderRadius: "10px",
+                        border: "1px solid rgba( 255, 255, 255, 0.18 )",
+                        zIndex: 999999999999999999999999,
                     }}
                 >
                     <div className="frame-container w-[80%]">

@@ -31,7 +31,7 @@ export default function Header() {;
     }, [])
     return (
         <>
-            <header className="h-24 z-[99999] w-full bg-[#161c24] border-b-2 border-[#00a3ac] fixed flex items-center justify-between">
+            <header style={{zIndex: 99999}} className="h-24 z-[99999] w-full bg-[#161c24] border-b-2 border-[#00a3ac] fixed flex items-center justify-between">
                 <button
                     onClick={() => router.push("/")}
                     data-animation="ripple"

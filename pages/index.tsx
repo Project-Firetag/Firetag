@@ -158,8 +158,7 @@ export default function Home() {
             // extraMapTypes={["satellite"]}
           >
             {/* Child components, such as markers, info windows, etc. */}
-            <div id="search" className={`w-screen h-8 z-[9999999999] 
-            `}>
+            <div id="search" className={`w-screen h-8 z-[9999999999]`} style={{zIndex: 9999999999}}>
               <Autocomplete
                 onLoad={(i) => setAutocomplete(i)}
                 onPlaceChanged={() => {
