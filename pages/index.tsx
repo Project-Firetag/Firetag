@@ -23,34 +23,6 @@ const containerStyle = (x: number) => ({
   overflow: "visible !important",
 });
 
-const getStraightLine = (finish: [number, number], start: [number, number] = [0, 0]): [(x: number) => number, [number, number]] => {
-  const [[x1, y1], [x2, y2]] = [start, finish];
-  const gradient = (y2-y1)/(x2-x1);
-  // y-y1=mx-mx1
-  console.log(`${gradient}x-${(gradient*(x1) + y1)}`, gradient);
-  const y = (x: number) => gradient*(x-x1) + y1;
-  const midpoint: [number, number] = [(x2-x1)/2, (y2-y1)/2];
-  const normal = (x: number) => (-1/gradient)*(x-midpoint[0]) + midpoint[1];
-  const thirdPoint: [number, number] = [midpoint[0] - 15, normal(midpoint[0] - 4)];
-  const [x3, y3] = thirdPoint;
-  const c = (a: number, b: number) => y1 - a*(x1)^2 - b*(x1);
-  const b = (a: number, c: number) => (y2 - a*(x2)^2 - c)/x2;
-  const a = (b: number, c:number) => (y3 - b*x3 - c)/x3^2;
-/*
-  [x1, y1]
-  [x2, y2]
-  [x3, y3]
-  g(x) = ax^2 + bx + c
-  y1 = a(x1)^2 + b(x1) + c
-  c = y1 - a(x1)^2 - b(x1)
-  y2 = a(x2)^2 + b(x2) + c
-  b = (y2 - a(x2)^2 - c)/x2
-  y3 = ax3^2 + bx3 + c
-  a = (y3 - bx3 - c)/x3^2 
-*/
-
-  return [y, thirdPoint]
-}
 
 export default function Home() {
   const [ open, setOpen ] = useState<boolean>(false);
@@ -150,25 +122,18 @@ export default function Home() {
   }, [longitude, latitude]);
   const transitionZoom = () => {
     const interval = 0.05;
-    console.log(getStraightLine([latitude, longitude])[0](5))
     setTimeout(() => {
-      // for(let i = zoom; i <= 22+interval; i+=interval) {
-      //   setTimeout(() => {
-      //     setZoom(i);
-      //     if(Math.floor(i) === 22) {
-      //       setGetDetails(true)
-      //     }
-      //   }, i*700)
-      // }
-      for(let i = 0; i <= latitude; i+=10) {
+      for(let i = zoom; i <= 22+interval; i+=interval) {
         setTimeout(() => {
-          console.log([getStraightLine([latitude, longitude])[0](i), i]);
-        }, i*200)
+          setZoom(i);
+          if(Math.floor(i) === 22) {
+            setGetDetails(true)
+          }
+        }, i*700)
       }
     }, 250)
     // setGetDetails(true)
   }
-  console.log({lat: getStraightLine([40.7485452, -73.98576349999999])[0](20), lng: getStraightLine([40.7485452, -73.98576349999999])[0](20)[1]})
   if (typeof window !== undefined) {
     return (
       <main className="w-screen h-screen flex flex-col overflow-y-hidden">
@@ -238,12 +203,6 @@ export default function Home() {
             {longitude && latitude && (
               <Marker position={{ lat: latitude, lng: longitude }} />
             )}
-            <Marker position={{ lat: 0, lng: 0 }} />
-            <Marker position={{lat: 10, lng: getStraightLine([40.7485452, -73.98576349999999])[0](10)}}/>
-            <Marker position={{lat: 20, lng: getStraightLine([40.7485452, -73.98576349999999])[0](20)}}/>
-            <Marker position={{lat: 30, lng: getStraightLine([40.7485452, -73.98576349999999])[0](30)}}/>
-            <Marker position={{ lat: 40.7485452, lng: -73.98576349999999 }} />
-            <Marker position={{ lat: getStraightLine([40.7485452, -73.98576349999999])[1][0], lng: getStraightLine([40.7485452, -73.98576349999999])[1][1] }} />
             <button
               onClick={onClick}
               className="bg-[#00a3ac] absolute pl-2 pr-2 pt-3 pb-3 bottom-6 hover:bg-[#035f7b] rounded-[8px] transition-all text-white font-bold text-base" style={{left: "calc(50vw - 5.125rem)", bottom: dimensions.x < 750 ? "45px" : ""}}
