@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 import Header from '../elements/header'
 import "../styles/globals.css"
+import "../styles/z-index.css"
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
