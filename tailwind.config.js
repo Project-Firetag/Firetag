@@ -5,6 +5,9 @@ module.exports = {
     "./elements/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      libre: "Libre Baskerville"
+    },
     extend: {},
   },
   plugins: [],

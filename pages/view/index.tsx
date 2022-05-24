@@ -6,15 +6,30 @@ import router from "next/router";
 import getIncidentsByDate from "../../utils/getIncidentsByDate";
 import getIncidentsByPlace from "../../utils/getIncidentsByPlace";
 import getRecentIncidents from "../../utils/getRecentIncidents";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import reduceData from "../../utils/reduceData";
+import { createNull } from "typescript";
+
+const modelGraphData = (d: {
+    [key: string]: number;
+}) => {
+    return Object.keys(d).map((key, index) => {
+        return {
+            value: Object.values(d)[index],
+            name: key
+        }
+    }).reverse()
+}
 
 export async function getServerSideProps() {
-    const [ byDate, byPlace, recentIncidents ] = await Promise.all([getIncidentsByDate(), getIncidentsByPlace(), getRecentIncidents()]);
+    const [ byDate, byPlace, recentIncidents ]: any[] = await Promise.all([getIncidentsByDate(), getIncidentsByPlace(), getRecentIncidents()]);
+    const reducedData = reduceData(byPlace)
     return {
         props: {
             byDate,
             byPlace,
-            recentIncidents
+            recentIncidents,
+            reducedData
         }
     }
 }
@@ -25,15 +40,38 @@ interface Props {
     byPlace: {
         [key: string]: number;
     };
+    reducedData: {
+        [key: string]: number;
+    };
     recentIncidents: Incidents
 }
 
 export default function View({
     byDate,
     byPlace,
-    recentIncidents
+    recentIncidents,
+    reducedData
 }: Props) {
-    console.log(byDate, byPlace, recentIncidents)
+    console.log(byPlace)
+    // console.log(byDate, byPlace, recentIncidents);
+    const [ dimensions, setDimensions ] = useState({
+      y: 0,
+      x: 0
+    });
+
+    useEffect(() => {
+        setDimensions({
+            y: window.innerHeight,
+            x: window.innerWidth
+        });
+        window.addEventListener("resize", () => {
+            setDimensions({
+                y: window.innerHeight,
+                x: window.innerWidth
+            });
+        })
+    }, [])
+    
     async function refresh() {
         const res = await fetch("http://localhost:3000/api/refresh")
         const data = await res.json();
@@ -41,24 +79,43 @@ export default function View({
     }
 
 
-    const [graphData, setGraphData] = useState(Object.keys(byPlace).map((key, index) => {
-            return {
+    const graphData = (Object.keys(byPlace).map((key, index) => {
+            return ({
                 value: Object.values(byPlace)[index],
                 name: key
-            }
-    }))
-    console.log(graphData)
+            })
+    })).sort((a, b) => {
+        return a.value - b.value
+    });
+
+    const reducedGraphData = typeof Object !== "undefined" ? (Object.keys(reducedData).map((key, index) => {
+        return {
+            value: Object.values(reducedData)[index],
+            name: key
+        }
+    }).sort((a, b) => {
+        return b.value - a.value
+    })) : null;
+
+    // const reducedData = reduceData(byPlace)
+    // const reducedGraphData = Object.keys(reducedData).map((key, index) => {
+    //     return {
+    //         value: Object.values(reducedData)[index],
+    //         name: key
+    //     }
+    // })
+    // console.log(graphData)
     const [barGraphData, setBarGraphData] = useState(Object.keys(byDate).map((key, index) => {
         return {
             Incidents: Object.values(byDate)[index],
             date: key
         }
     }).reverse())
-
+    console.log(graphData)
     const [data, setData] = useState(recentIncidents)
     return (
-        <main className="w-full pt-28 p-4 pl-12 flex flex-col lg:flex-row xl:flex-row 2xl:flex-row md:flex-row md:items-start sm:items-center items-start min-h-screen justify-evenly bg-[#161c24]">
-            <div id="main-table" className="w-[40%] flex justify-start items-center flex-col">
+        <main className={`w-full pt-28 p-4 pl-4 flex items-start min-h-screen justify-evenly bg-[#161c24] ${dimensions.x < 1150 ? "flex-col items-center" : "flex-row"} ${dimensions.x < 600 ? "pt-[500px] relative h-[1100px]" : ""}`}>
+            <div id="main-table" className={`w-[40%] flex justify-start items-center flex-col ${dimensions.x < 600 ? "scale-[0.7] relative -top-[110px]" : ""}`}>
                 <h2 className="w-[28rem] text-white text-center text-xl font-bold">Incidents/Reports</h2>
                 <br />
                 <div className="rounded-xl border-2 border-slate-500">
@@ -89,7 +146,7 @@ export default function View({
                 <div id="bottom-right">
                     <h2 className="w-full text-center text-xl text-white font-bold">Trends</h2>
                     <br />
-                        <PieChart
+                        {reducedGraphData && <PieChart
                             width={600}
                             height={400}
                         >
@@ -98,9 +155,9 @@ export default function View({
                                     {arg.payload[0] ? `${Math.round((Number(arg.payload[0].value)/graphData.map((i) => i.value).reduce((i1, i2) => i1+i2))*100)}%` :  ""}
                                 </div>
                             }}/>
-                            <Pie data={graphData} dataKey="value" nameKey="name" label={({name}) => name} fill="#8884d8" labelLine>
+                            <Pie data={reducedGraphData} dataKey="value" nameKey="name" label={({name}) => name} fill="#8884d8" labelLine>
                                 {
-                                    graphData.map((graph, index) => (
+                                    reducedGraphData.map((graph, index) => (
                                         <Cell 
                                             // onMouseOver={(e) => {console.log("mouse over"); e.target.style.filter = "saturate(10px)"}} 
                                             key={`cell-${index}`} 
@@ -111,14 +168,14 @@ export default function View({
                                     ))
                                 }
                             </Pie>
-                        </PieChart>
+                        </PieChart>}
                 </div>
             </div>
-            <div id="right-table" className="w-[40%] flex justify-center items-center flex-col">
+            <div id="right-table" className={`min-w-[40%] max-w-[600px] flex justify-center items-center flex-col ${dimensions.x < 600 ? "scale-[0.7] relative -top-[290px]" : ""}`}>
                 <div id="top-right">
                     <h2 className="w-[28rem] text-center text-xl text-white font-bold">Trends</h2>
                     <br />
-                    <div  className="rounded-xl border-2 border-slate-500">
+                    <div className="rounded-xl border-2 border-slate-500">
                         <table className="rounded-xl border-collapse overflow-hidden border-2 text-white border-slate-500 w-[28rem]">
                             <thead className="bg-[#6018e752]">
                                 <tr>
@@ -128,7 +185,7 @@ export default function View({
                             </thead>
                             <tbody>
                                 {
-                                    graphData.map((row, index) => (
+                                    reducedGraphData.map((row, index) => (
                                         <Link key={`row-${index}`} href={`/location/${row.name}`} passHref>
                                             <tr className="hover:bg-[#02448677] transition-all cursor-pointer">
                                                 <td className="border-2 border-slate-500 w-28 h-[35px] text-center">{row.name}</td>
@@ -144,7 +201,7 @@ export default function View({
                 <div id="bottom-right">
                     <br />
                     <h2 className="w-full text-center text-xl text-white font-bold">Uttarakhand Trends</h2>
-                    <div id="bar-graph">
+                    <div id="bar-graph" className={`${dimensions.x < 700 ? "scale-95" : ""} ${dimensions.x < 615 ? "scale-90" : ""}  ${dimensions.x < 510 ? "scale-[0.85]" : ""}   ${dimensions.x < 475 ? "scale-[0.8]" : ""} relative right-8`}>
                             <LineChart width={600} height={400} data={barGraphData}>
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis dataKey="date" />

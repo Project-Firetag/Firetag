@@ -1,5 +1,4 @@
-export default function generateSlug() {
-    const number = new Date().getTime();
+export default function generateSlug(number: number = new Date().getTime()) {
     const numberToString = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
     let uniqueString = "";
     for(let element of String(number).split("")) {

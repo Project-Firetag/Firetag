@@ -8,7 +8,8 @@ export default async function getIncidentsByDate() {
         const today: any = client.query(
             Map(
                 Paginate(
-                    Match(Index('date'), (new Date()).toLocaleDateString())
+                    Match(Index('date'), (new Date()).toLocaleDateString()), 
+                    {size: 9999999999}
                 ),
                 Lambda("X", Get(Var("X")))
             )
@@ -16,32 +17,32 @@ export default async function getIncidentsByDate() {
         const yesterday: any = client.query(
             Map(
                 Paginate(
-                Match(Index('date'), (new Date((new Date()).valueOf() - 1000*60*60*24)).toLocaleDateString())
-              ),
+                    Match(Index('date'), (new Date((new Date()).valueOf() - 1000*60*60*24)).toLocaleDateString()), {size: 9999999999}
+                ),
               Lambda("X", Get(Var("X")))
             )
         )
         const yesterday2: any = client.query(
             Map(
                 Paginate(
-                Match(Index('date'), (new Date((new Date()).valueOf() - 2000*60*60*24)).toLocaleDateString())
-              ),
+                    Match(Index('date'), (new Date((new Date()).valueOf() - 2000*60*60*24)).toLocaleDateString()), {size: 9999999999}
+                ),
               Lambda("X", Get(Var("X")))
             )
         )
         const yesterday3: any = client.query(
             Map(
                 Paginate(
-                Match(Index('date'), (new Date((new Date()).valueOf() - 3000*60*60*24)).toLocaleDateString())
-              ),
+                    Match(Index('date'), (new Date((new Date()).valueOf() - 3000*60*60*24)).toLocaleDateString()), {size: 9999999999}
+                ),
               Lambda("X", Get(Var("X")))
             )
         )
         const yesterday4: any = client.query(
             Map(
                 Paginate(
-                Match(Index('date'), (new Date((new Date()).valueOf() - 4000*60*60*24)).toLocaleDateString())
-              ),
+                    Match(Index('date'), (new Date((new Date()).valueOf() - 4000*60*60*24)).toLocaleDateString()), {size: 9999999999}
+                ),
               Lambda("X", Get(Var("X")))
             )
         )

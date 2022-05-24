@@ -4,7 +4,7 @@ import React from "react";
 const images = ['https://images.unsplash.com/photo-1506501139174-099022df5260?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1351&q=80', 'https://images.unsplash.com/photo-1523438097201-512ae7d59c44?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80', 'https://images.unsplash.com/photo-1513026705753-bc3fffca8bf4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80']
 
 
-const Carousel = () => {
+const Carousel = ({images}: {images: string[]}) => {
   const [currentImage, setCurrentImage] = React.useState(0);
 
   const refs = images.reduce((acc, val, i) => {
@@ -56,13 +56,13 @@ const Carousel = () => {
   );
 
   return (
-    <div className="p-12 flex justify-center w-full items-center">
+    <div className="p-6 flex justify-center w-full items-center">
       <div className="relative w-full rounded-[3rem] overflow-hidden">
-        <div className="carousel">
+        <div className="carousel" style={{maxHeight: "calc(100vh - 188px)"}}>
           {sliderControl(true)}
           {images.map((img, i) => (
-            <div className="w-full flex-shrink-0 bg-[#ffffff00]" key={img} ref={refs[i]}>
-              <img src={img} alt="" className="w-full object-contain" />
+            <div className="w-full flex-shrink-0 bg-[#06000f86]" key={img} ref={refs[i]}>
+              <img src={img} alt="" className="h-full object-contain m-auto" />
             </div>
           ))}
           {sliderControl()}

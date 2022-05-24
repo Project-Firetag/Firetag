@@ -19,20 +19,18 @@ interface Data {
 
 export default async function postIncident(req: NextApiRequest, res: NextApiResponse) {
     const data: Data = JSON.parse(JSON.stringify(req.body));
-    console.log(data);
+    // console.log(data);
     try {
+        const refId = (new Date()).getTime();
         await client.query(
             Create(
-                Ref(Collection("co-ordinates"), (new Date()).getTime()),
+                Ref(Collection("co-ordinates"), refId),
                 { 
-                    data: {
-                        ...data,
-                        dateAndTime: `${data.date}, ${data.time}`
-                    }
+                    data: data
                 }
             )
         )
-        res.json({true: true})
+        res.json({true: true, refId})
     } catch {
         res.json({
             false: false

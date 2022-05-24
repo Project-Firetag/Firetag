@@ -4,6 +4,7 @@ import { Incidents } from "../../interfaces";
 import Image from "next/image";
 import Carousel from "../../components";
 import getIncidentsBySlug from "../../utils/getIncidentBySlug";
+import getMedia from "../../utils/getMedia";
 
 // const data: Incidents = [
 //   {
@@ -58,16 +59,19 @@ import getIncidentsBySlug from "../../utils/getIncidentBySlug";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const res = await getIncidentsBySlug(String(context.query.slug))
-  
+  const media: any = (await getMedia(String(context.query.slug)));
+  console.log(media)
   return {
     props: {
       data: res ?? {},
+      media: media.data.length ? media.data : null
     },
   };
 }
 
 export default function View({
   data: { name, date, location, slug, description, email, phoneNumber, city },
+  media
 }: {
   data: {
     name: string;
@@ -79,6 +83,7 @@ export default function View({
     phoneNumber: string;
     city: string
   };
+  media: null | string[]
 }) {
   return (
     <>
@@ -127,16 +132,15 @@ export default function View({
             </a>
             <br />
             <br />
-            <h3 className="text-2xl text-white">Description: </h3>
-            <br />
+            <h3 className="text-2xl text-white text-left">Description: </h3>
+            <br /><br />
             <p className="text-lg text-white">
             {description}
             </p>
             <br />
-            <h3 className="text-2xl text-white">Media: </h3>
-            <br />
+            {media && (<><h3 className="text-2xl text-white">Media: </h3><br /></>)}
         </div>
-        <Carousel></Carousel>
+        {media && <Carousel images={media}></Carousel>}
       </main>
     </>
   );

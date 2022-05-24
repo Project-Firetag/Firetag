@@ -6,15 +6,13 @@ export default async function getIncidentsByPlace() {
     // const data: Data = JSON.parse(JSON.stringify(req.query));
     try {
         const data: any = await client.query(
-            Map(
-                Paginate(
-                    Match(Index('all'))
-                ),
-                Lambda("X", Get(Var("X")))
+            Paginate(
+                Match(Index('place')), { size: 9999999999 }
             )
         )
-        const dateStrings = data.data.map(i => i.data).map(i => i.city)
+        const dateStrings = data.data
         const dateObject = {};
+        // console.log(data.data, 19)
         dateStrings.forEach(element => {
             if(dateObject[element]) {
                 dateObject[element] += 1;
@@ -22,6 +20,7 @@ export default async function getIncidentsByPlace() {
                 dateObject[element] = 1;
             }
         });
+        console.log(dateObject, 26)
         return dateObject
     } catch(e) {
         return({
