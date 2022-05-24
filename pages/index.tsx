@@ -156,7 +156,7 @@ export default function Home() {
               lat: center[0],
               lng: center[1],
             }}
-            zoom={zoom + 3}
+            zoom={zoom}
             mapTypeId='satellite'
             mapContainerClassName="mapContainer"
             // extraMapTypes={["satellite"]}
