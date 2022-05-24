@@ -79,11 +79,6 @@ export default function Home() {
       );
     }
   };
-
-  const [center, setCenter]: [
-    [null | number, null | number],
-    React.Dispatch<React.SetStateAction<[number, number] | [null, null]>>
-  ] = useState<[number, number]>([0, 0]);
   
   useEffect(() => {
     setDimensions({
@@ -153,10 +148,10 @@ export default function Home() {
           <GoogleMap
             mapContainerStyle={containerStyle(dimensions.x)}
             center={{
-              lat: latitude,
-              lng: longitude,
+              lat: latitude ?? 0,
+              lng: longitude ?? 0,
             }}
-            zoom={zoom}
+            zoom={1}
             mapTypeId='satellite'
             mapContainerClassName="mapContainer"
             // extraMapTypes={["satellite"]}
