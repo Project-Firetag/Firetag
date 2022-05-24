@@ -12,6 +12,8 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <meta name="theme-color" content={"#161c24"} />
+        <link rel='manifest' href='/manifest.json' />
+        <meta name='mobile-web-app-capable' content='yes' />
         {title && <title>{title}</title>}
       </Head>
       <Header/>
