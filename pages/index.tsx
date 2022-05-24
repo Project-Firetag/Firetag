@@ -140,6 +140,7 @@ export default function Home() {
          setData={setData} 
          coordinates={{x: latitude, y: longitude}} 
          slug={slug}
+         place={autocomplete?.getPlace()?.name ?? null}
         />
         <LoadScript
           libraries={libraries}
@@ -151,7 +152,7 @@ export default function Home() {
               lat: latitude ?? 0,
               lng: longitude ?? 0,
             }}
-            zoom={1.5}
+            zoom={zoom}
             mapTypeId='satellite'
             mapContainerClassName="mapContainer"
             // extraMapTypes={["satellite"]}

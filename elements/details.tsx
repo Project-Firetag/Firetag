@@ -9,7 +9,8 @@ export default function Details({
     setOpen,
     coordinates,
     setData,
-    slug
+    slug,
+    place
 }: {
     open: boolean;
     setOpen: Dispatch<SetStateAction<boolean>>;
@@ -19,6 +20,7 @@ export default function Details({
     };
     setData: (any: any) => void;
     slug: null | string;
+    place: null | string;
 }) {
     const [ media, setMedia ] = useState(false);
     useEffect(() => {
@@ -55,7 +57,8 @@ export default function Details({
                                     setOpen: setOpen,
                                     setData: setData,
                                     coordinates: coordinates,
-                                    setMedia: setMedia
+                                    setMedia: setMedia,
+                                    place: place
                                 }}/>
                             ))}
     

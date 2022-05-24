@@ -4,7 +4,8 @@ export default function Input({
   coordinates,
   setData,
   setOpen,
-  setMedia
+  setMedia,
+  place
 }: {
   coordinates: {
     x: number;
@@ -12,7 +13,8 @@ export default function Input({
   };
   setData: (any: any) => void;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  setMedia: Dispatch<SetStateAction<boolean>>
+  setMedia: Dispatch<SetStateAction<boolean>>;
+  place: string | null;
 }) {
     const nameRef = useRef<null | HTMLInputElement>(null)
     const emailRef = useRef<null | HTMLInputElement>(null)
@@ -33,9 +35,11 @@ export default function Input({
 
   return (
     <form onSubmit={(e) => handleSendData(e, true)} className="w-full flex items-center flex-col justify-center relative float-left">
-      <h2 className="text-white text-2xl">
+      {!place ? <h2 className="text-white text-2xl">
         Your co-ordinates are ({coordinates.x}, {coordinates.y}){" "}
-      </h2>
+      </h2> : <h2 className="text-white text-2xl">
+        Your location is at {place}
+      </h2>}
       <h3 className="text-white text-xl">
         Please entere the following details:
       </h3>
