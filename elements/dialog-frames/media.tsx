@@ -42,7 +42,7 @@ export default function Media({
         Promise.all(promises).then((res) => {
             console.log(res.map(i => i.url), slug)
             setImages(res.map(i => i.url));
-            axios.post("http://localhost:3000/api/addMedia", {
+            axios.post(`${location.origin}/api/addMedia`, {
                 images: JSON.stringify(res.map(i => i.url)),
                 slug: slug
             }).then(() => {

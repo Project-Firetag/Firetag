@@ -58,7 +58,7 @@ export default function Home() {
   useEffect(() => {
     if(!getDetails && data?.hasOwnProperty("name")) {
       console.log(getDetails, data, "sending request")
-      axios.post("http://localhost:3000/api/postIncident", data).then(i => console.log(i));
+      axios.post(`${location.origin}/api/postIncident`, data).then(i => console.log(i));
     }
   }, [getDetails, data])
 
@@ -98,7 +98,7 @@ export default function Home() {
       transitionZoom()
       axios
         .get(
-          `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&appid=4f6fc656674d7a9052acc9f5d254b392`
+          `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&appid=4f6fc656674d7a9052acc9f5d254b392`
         )
         .then((i) => {
           const slug = generateSlug()

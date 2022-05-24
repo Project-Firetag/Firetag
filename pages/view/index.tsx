@@ -73,7 +73,7 @@ export default function View({
     }, [])
     
     async function refresh() {
-        const res = await fetch("http://localhost:3000/api/refresh")
+        const res = await fetch(`${location.origin}/api/refresh`)
         const data = await res.json();
         return(data) 
     }
