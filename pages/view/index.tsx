@@ -235,3 +235,5 @@ export default function View({
         // <h1></h1>
     )
 }
+
+View.title = `Firetag - View Statestics`

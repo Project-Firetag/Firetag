@@ -215,3 +215,5 @@ export default function Home() {
     );
   } else return <></>;
 }
+
+Home.title = `Firetag - Report an Incident`

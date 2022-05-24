@@ -5,6 +5,7 @@ import Image from "next/image";
 import Carousel from "../../components";
 import getIncidentsBySlug from "../../utils/getIncidentBySlug";
 import getMedia from "../../utils/getMedia";
+import Head from "next/head";
 
 // const data: Incidents = [
 //   {
@@ -87,6 +88,9 @@ export default function View({
 }) {
   return (
     <>
+      <Head>
+        <title>Report in {city} by {name}</title>
+      </Head>
       <main className="bg-[#161c24] pt-28 w-screen min-h-screen p-16">
         <div className="pl-12 pr-12">
             <h2 className="text-5xl text-center text-white">Incident Report</h2>

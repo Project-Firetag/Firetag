@@ -90,3 +90,5 @@ function Mark({
         />
     )
 }
+
+Map.title = `Firetag - Map`
