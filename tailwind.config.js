@@ -6,9 +6,16 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      libre: "Libre Baskerville"
+      libre: "Libre Baskerville",
+      kdam: "Kdam Thmor Pro",
+      poppins: "'Poppins'",
+      dancing: "Dancing Script"
     },
-    extend: {},
+    extend: {
+      transitionTimingFunction: {
+        squared: "cubic-bezier(1, 0, 0, 1)"
+      }
+    },
   },
   plugins: [],
 }

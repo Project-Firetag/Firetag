@@ -70,7 +70,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   };
 }
 
-export default function View({
+export default function statistics({
   data: { name, date, location, slug, description, email, phoneNumber, city },
   media
 }: {

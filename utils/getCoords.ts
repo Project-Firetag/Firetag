@@ -7,8 +7,12 @@ export default async function getCoords() {
     try {
         const data: any = await client.query(
             Paginate(
-                Match(Index('coords')),
-                {size: 9999999999}
+                Match(
+                    Index('coords')
+                ),
+                {
+                    size: 9999999999
+                }
             )
         )
         console.log(data)

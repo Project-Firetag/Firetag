@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Image from "next/image";
 import Input from "./dialog-frames/input";
 import Media from "./dialog-frames/media";
+import Success from "./views/success";
 
 
 export default function Details({
@@ -22,10 +23,18 @@ export default function Details({
     slug: null | string;
     place: null | string;
 }) {
+    const [ showSuccess, setShowSuccess ] = useState(false);
     const [ media, setMedia ] = useState(false);
     useEffect(() => {
         console.log(media, open)
     }, [media, open])
+    useEffect(() => {
+        if(showSuccess) {
+            setTimeout(() => {
+                setShowSuccess(false)
+            }, 10*1000)
+        }
+    }, [showSuccess])
     if(media||open) {
         return (
             <div
@@ -33,6 +42,7 @@ export default function Details({
             style={{ height: "calc(100% - 6rem)", zIndex: 99999999999999 }}
             className="w-full h-full absolute"
             >
+                <Success open={showSuccess} setOpen={setShowSuccess}/>
                 <div
                     className="details dialog w-[48rem] absolute p-5 flex flex-col justify-center items-center"
                     style={{
@@ -67,7 +77,7 @@ export default function Details({
                                 !media ? (
                                     <></>
                                 ) : (
-                                    <Media slug={slug} setOpen={setMedia}/>
+                                    <Media setShowSuccess={setShowSuccess} slug={slug} setOpen={setMedia}/>
                                 )
                             }
                         
@@ -76,6 +86,6 @@ export default function Details({
             </div>
         );
     } else {
-        return (<></>)
+        return (<><Success open={showSuccess} setOpen={setShowSuccess}/></>)
     }
 }

@@ -8,7 +8,6 @@ import getIncidentsByPlace from "../../utils/getIncidentsByPlace";
 import getRecentIncidents from "../../utils/getRecentIncidents";
 import { useEffect, useRef, useState } from "react";
 import reduceData from "../../utils/reduceData";
-import { createNull } from "typescript";
 
 const modelGraphData = (d: {
     [key: string]: number;
@@ -52,7 +51,7 @@ interface Props {
     recentIncidents: Incidents
 }
 
-export default function View({
+export default function Statistics({
     byDate,
     byPlace,
     recentIncidents,
@@ -126,23 +125,23 @@ export default function View({
             <div id="main-table" className={`w-[40%] flex justify-start items-center flex-col ${dimensions.x < 600 ? "scale-[0.7] relative -top-[110px]" : ""}`}>
                 <h2 className="w-[28rem] text-white text-center text-xl font-bold">Incidents/Reports</h2>
                 <br />
-                <div className="rounded-xl border-2 border-slate-500">
-                    <table className="rounded-xl border-collapse overflow-hidden border-2 border-slate-500 text-white w-[28rem]">
-                        <thead className="bg-[#6018e752]">
-                            <tr>
-                                <th className="border-2 border-slate-500 w-56 text-center" colSpan={2}>Time</th>
-                                <th className="border-2 border-slate-500 w-28 h-[35px] text-center">Location</th>
-                                <th className="border-2 border-slate-500 w-28 h-[35px] text-center">Name</th>
+                <div className="rounded-xl border-2 border-slate-500 h-[280px] overflow-y-scroll">
+                    <table className="rounded-xl border-collapse border-slate-500 text-white w-[28rem]">
+                        <thead className="sticky -top-[2px] bg-[#161c24]">
+                            <tr className="bg-[#6018e752]">
+                                <th className="border-2 border-l-0 border-t-0 border-slate-500 w-56 text-center" colSpan={2}>Time</th>
+                                <th className="border-2 border-t-0 border-slate-500 w-28 h-[35px] text-center">Location</th>
+                                <th className="border-2 border-r-0 border-t-0 border-slate-500 w-28 h-[35px] text-center">Name</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 data.map && data.map((row, index) => (
-                                    <Link passHref key={`row-${index}`} href={`view/${row.slug}`}>
+                                    <Link passHref key={`row-${index}`} href={`statistics/${row.slug}`}>
                                         <tr className="cursor-pointer transition-all hover:bg-[#02448677]">
-                                            <td className="border-2 border-slate-500 w-56 text-center" colSpan={2}>{row.dateAndTime}</td>
-                                            <td className="border-2 border-slate-500 w-28 h-[35px] text-center">{row.city}</td>
-                                            <td className="border-2 border-slate-500 w-28 h-[35px] text-center">{row.name}</td>
+                                            <td className={`border-2 border-l-0 border-slate-500 w-56 text-center ${data.length - 1 === index ? "border-b-0" : ""}`} colSpan={2}>{row.dateAndTime}</td>
+                                            <td className={`border-2 border-slate-500 w-28 h-[35px] text-center ${data.length - 1 === index ? "border-b-0" : ""}`}>{row.city}</td>
+                                            <td className={`border-2 border-r-0 border-slate-500 w-28 h-[35px] text-center ${data.length - 1 === index ? "border-b-0" : ""}`}>{row.name}</td>
                                         </tr>
                                     </Link>
                                 ))
@@ -183,12 +182,12 @@ export default function View({
                 <div id="top-right">
                     <h2 className="w-[28rem] text-center text-xl text-white font-bold">Trends</h2>
                     <br />
-                    <div className="rounded-xl border-2 border-slate-500">
-                        <table className="rounded-xl border-collapse overflow-hidden border-2 text-white border-slate-500 w-[28rem]">
-                            <thead className="bg-[#6018e752]">
-                                <tr>
-                                    <th className="border-2 border-slate-500 w-28 h-[35px] text-center">Location</th>
-                                    <th className="border-2 border-slate-500 w-28 h-[35px] text-center">No. of reports</th>
+                    <div className="rounded-xl border-2 border-slate-500 h-[280px] overflow-y-scroll">
+                        <table className="rounded-xl border-collapse text-white border-slate-500 w-[28rem] overflow-visible">
+                            <thead className="w-[28rem] sticky -top-[2px] bg-[#161c24]">
+                                <tr className="h-[35px] w-[28rem] bg-[#6018e752]">
+                                    <th className="border-2 border-l-0 border-t-0 border-slate-500 w-[14rem] h-[35px] text-center">Location</th>
+                                    <th className="border-2 border-r-0 border-t-0 border-slate-500 w-[14rem] h-[35px] text-center">No. of reports</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -196,8 +195,8 @@ export default function View({
                                     reducedGraphData.map((row, index) => (
                                         <Link key={`row-${index}`} href={`/location/${row.name}`} passHref>
                                             <tr className="hover:bg-[#02448677] transition-all cursor-pointer">
-                                                <td className="border-2 border-slate-500 w-28 h-[35px] text-center">{row.name}</td>
-                                                <td className="border-2 border-slate-500 w-28 h-[35px] text-center">{row.value}</td>
+                                                <td className={`border-2 border-l-0 border-slate-500 capitalize w-28 h-[35px] text-center ${reducedGraphData.length - 1 === index ? "border-b-0" : ""}`}>{row.name}</td>
+                                                <td className={`border-2 border-r-0 border-slate-500 w-28 h-[35px] text-center ${reducedGraphData.length - 1 === index ? "border-b-0" : ""}`}>{row.value}</td>
                                             </tr>
                                         </Link>
                                     ))
@@ -232,7 +231,7 @@ export default function View({
                                         )
                                     }}
                                 />
-                                <Line data={barGraphData} type="linear" dataKey={`Incidents`}  stroke="#00e1ff">
+                                <Line data={barGraphData} type="monotoneX" dataKey={`Incidents`}  stroke="#00e1ff">
                                     
                                 </Line>
                             </LineChart>
@@ -244,4 +243,4 @@ export default function View({
     )
 }
 
-View.title = `Firetag - View Statestics`
+Statistics.title = `Firetag - View statistics`

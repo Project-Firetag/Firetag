@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Kdam+Thmor+Pro&family=Libre+Baskerville&family=Poppins&display=swap');
 /* @import "./z-index.css" */
 @tailwind base;
 @tailwind components;
@@ -132,8 +132,15 @@ main {
 }
 
 header {
-	backdrop-filter: blur(10px);
 	background: #00a3ac
+}
+
+header.backdropFilter {
+	backdrop-filter: blur(10px);
+}
+
+header.moreBackdropFilter {
+	backdrop-filter: blur(100px);
 }
 
 .transparent {
@@ -285,4 +292,85 @@ br {
 
 .frame-container form {
   display: inline-block;
+}
+
+.login-box {
+  background: hsl(183deg 100% 50% / 60%);
+  box-shadow: 0 8px 32px 0 rgb(0 193 255 / 36%);
+  backdrop-filter: blur( 6.5px );
+  -webkit-backdrop-filter: blur( 6.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+h2.login-text {
+  text-shadow: 10px -4px 23px #003e95;
+}
+
+h1.login-text {
+  text-shadow: 11px -4px 23px #0400ff;
+}
+
+.login-main  input, textarea {
+  z-index: 9999999999999999999999;
+  width: 100%;
+  padding: 5px;
+  border-radius: 7.5px;
+  background: rgb(0, 22, 74);
+  transition: all 0.4s ease-in-out, background-color 9999999999999999999999s linear, color 9999999999999999999999s linear;
+  color: whitesmoke;
+  padding-left: 7.5px;
+  padding:0.8em;
+  border-radius: 0.5em;
+}
+
+.login-main input:focus, textarea:focus {
+  outline: none
+}
+
+.login-main input:focus-within, textarea:focus-within {
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+}
+
+.login-main div {
+  z-index: 99999999999999999999999;
+}
+
+#loading-container div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 29rem;
+  height: 29rem;
+  margin: 8px;
+  border: 18px solid #04c5d0;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #04c5d0 transparent transparent transparent;
+}
+
+#loading-container div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+#loading-container div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+#loading-container div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+main {
+  scroll-snap-type: y x mandatory;
+}
+
+.view {
+  scroll-snap-align: start;
 }

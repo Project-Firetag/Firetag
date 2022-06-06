@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const withPWA = require('next-pwa')
-const nextConfig = withPWA({
+const nextConfig = ({
   reactStrictMode: true,
   images: {
     domains: ['images.unsplash.com'],
@@ -9,7 +9,8 @@ const nextConfig = withPWA({
     MONGO_URI: "mongodb+srv://kabir:r9!a-QwbnDQfgDD@main.jdrxb.mongodb.net/gov-project?retryWrites=true&w=majority"
   },
   pwa: {
-    dest: "public"
+    dest: "public",
+    importScripts: ['/worker-development.js']
   }
 })
 

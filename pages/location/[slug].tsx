@@ -52,7 +52,7 @@ export default function Location({ data, location }: {
     return (
         <>
             <main className="w-screen h-screen flex-col overflow-hidden bg-[#161c24] flex items-center justify-center">
-            <h2 className="text-white text-3xl mb-4">{`${location} Statestics`}</h2>
+            <h2 className="text-white text-3xl mb-4">{`${location} statistics`}</h2>
             <LineChart width={dimensions.x *0.95} height={dimensions.y *0.75} data={sortedData}>
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis dataKey="date" />

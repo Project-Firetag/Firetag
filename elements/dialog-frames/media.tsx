@@ -4,14 +4,18 @@ import { useRef, useState, useEffect, Dispatch, SetStateAction } from "react";
 import { Camera } from "react-camera-pro";
 import reduceImageFileSize from "../../utils/reduceImage";
 import * as filestack from 'filestack-js';
+import { useLoading } from "../../hooks/useLoading";
 
 export default function Media({
     setOpen,
-    slug
+    slug,
+    setShowSuccess
 }: {
     setOpen: Dispatch<SetStateAction<boolean>>;
     slug: null | string;
+    setShowSuccess: Dispatch<SetStateAction<boolean>>;
 }) {
+    const [, setLoading] = useLoading()
     let count = 0
     if(filestack && !count) {
         var client = filestack.init('AnnD5xSC2Q8iyEQ6MQ6nwz');
@@ -22,6 +26,8 @@ export default function Media({
     const [image, setImage] = useState(null);
     const [images, setImages] = useState([]);
     const postImages = async () => {
+        setOpen(false);
+        setLoading(true)
         async function uploadImage(img: string) {
             img = await reduceImageFileSize(img)
             if(client) {
@@ -46,7 +52,8 @@ export default function Media({
                 images: JSON.stringify(res.map(i => i.url)),
                 slug: slug
             }).then(() => {
-                setOpen(false);
+                setLoading(false);
+                setShowSuccess(true)
             })
         })
     }
@@ -92,9 +99,8 @@ export default function Media({
                 Skip
             </button>
             <button
-            className={`bg-[#00a3ac] p-4 pt-2 pb-2 mb-5 mt-5 hover:bg-[#035f7b] rounded-[8px] transition-all text-white font-bold text-base`}
+            className="bg-[#00a3ac] w-1/2 p-4 pt-2 pb-2 hover:bg-[#035f7b] rounded-[8px] transition-all text-white font-bold text-base"
             style={{
-                width: "48%",
                 cursor: `${!Boolean(images.length) ? "not-allowed" : ""}`
             }}
             disabled={!Boolean(images.length)}
