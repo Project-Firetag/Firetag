@@ -44,6 +44,7 @@ export default function Header({ transparent }: { transparent: boolean}) {
         }
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

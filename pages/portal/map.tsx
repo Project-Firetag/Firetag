@@ -135,7 +135,7 @@ function Mark({
                 setBoxData(null)
             }}
             position={location}
-            onClick={() => router.push(`/statistics/${slug}`)}
+            onClick={() => router.push(`/portal/${slug}`)}
         />
     )
 }

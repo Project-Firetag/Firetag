@@ -19,7 +19,7 @@ export default async function getIncidentsByLocation(location: string): Promise<
                 Lambda("X", Get(Var("X")))
             )
         )
-
+        console.log(data)
         const dates = data.data.map(i => i.data).map(i => (i.date));
 
         const formatedDates = {};
@@ -64,6 +64,7 @@ export default async function getIncidentsByLocation(location: string): Promise<
         // console.log("return", res)
         return ([res, location])
     } catch(e) {
+        console.error(e)
         return ([[["", 0]], ""])
     }
 }

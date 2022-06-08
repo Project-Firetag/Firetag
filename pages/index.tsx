@@ -12,7 +12,6 @@ import Details from "../elements/details";
 import useMergeState from "../hooks/useMergeState";
 import Head from "next/head";
 import { useLoading } from "../hooks/useLoading";
-import Explanation from '../elements/views/explanation';
 
 const libraries: any = ["places"];
 
@@ -126,7 +125,7 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [longitude, latitude]);
   const transitionZoom = () => {
-    const interval = 0.05;
+    const interval = 0.25;
     setTimeout(() => {
       for (let i = zoom; i <= 22 + interval; i += interval) {
         setTimeout(() => {
@@ -244,7 +243,6 @@ export default function Home() {
             </GoogleMap>
           </LoadScript>
         </main>
-        <Explanation/>
       </>
     );
   } else return <></>;

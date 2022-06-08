@@ -103,6 +103,7 @@ export default function Login() {
 }
 
 Login.title = `Firetag - Login`
+Login.transperant = `Firetag - Login`
 
 /*
 Purpouse - user report forest fires.

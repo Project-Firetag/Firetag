@@ -6,9 +6,9 @@ import getIncidentsByLocation from "../../utils/getIncidentsByLocation";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     const city = String(context.query.slug)?.charAt(0).toUpperCase() + String(context.query.slug)?.slice(1);
-
+    
     const [res, location] = await getIncidentsByLocation(city);
-
+    console.log([res, location])
     // console.log("res", res)
     return {
         props: {

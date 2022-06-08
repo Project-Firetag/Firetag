@@ -51,7 +51,7 @@ interface Props {
     recentIncidents: Incidents
 }
 
-export default function Statistics({
+export default function Portal({
     byDate,
     byPlace,
     recentIncidents,
@@ -137,7 +137,7 @@ export default function Statistics({
                         <tbody>
                             {
                                 data.map && data.map((row, index) => (
-                                    <Link passHref key={`row-${index}`} href={`statistics/${row.slug}`}>
+                                    <Link passHref key={`row-${index}`} href={`portal/${row.slug}`}>
                                         <tr className="cursor-pointer transition-all hover:bg-[#02448677]">
                                             <td className={`border-2 border-l-0 border-slate-500 w-56 text-center ${data.length - 1 === index ? "border-b-0" : ""}`} colSpan={2}>{row.dateAndTime}</td>
                                             <td className={`border-2 border-slate-500 w-28 h-[35px] text-center ${data.length - 1 === index ? "border-b-0" : ""}`}>{row.city}</td>
@@ -243,4 +243,4 @@ export default function Statistics({
     )
 }
 
-Statistics.title = `Firetag - View statistics`
+Portal.title = `Firetag - View statistics`
