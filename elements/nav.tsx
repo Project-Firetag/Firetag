@@ -17,28 +17,18 @@ export const navRoutes = [
     name: "Portal",
   },
   {
-    href: "/portal/map",
-    name: "Map",
-  },
-  {
     href: "/contact-us",
     name: "Contact Us",
   },
 ];
 
-const widths = [52.609, 52.961, 80.453, 38.578, 98.359];
+const widths = [52.609, 52.961, 51.023, 98.359];
 const margins = [
-  0,
-  widths[1 - 1] + 32 * 1,
-  widths[1 - 1] + widths[2 - 1] + 32 * 2,
-  widths[1 - 1] + widths[2 - 1] + widths[3 - 1] + 32 * 3,
-  widths[1 - 1] + widths[2 - 1] + widths[3 - 1] + widths[4 - 1] + 32 * 4,
-  widths[1 - 1] +
-    widths[2 - 1] +
-    widths[3 - 1] +
-    widths[4 - 1] +
-    widths[5 - 1] +
-    32 * 4,
+  49,
+  widths[1 - 1] + 32 * 1 + 49,
+  widths[1 - 1] + widths[2 - 1] + 32 * 2 + 49,
+  widths[1 - 1] + widths[2 - 1] + widths[3 - 1] + 32 * 3 + 49,
+  widths[1 - 1] + widths[2 - 1] + widths[3 - 1] + widths[4 - 1] + 32 * 4 + 49,
 ];
 
 export default function Nav({ slug }: { slug: string }) {
@@ -63,10 +53,6 @@ export default function Nav({ slug }: { slug: string }) {
       case "/portal":
         preLocation = 2;
         console.log("?", slug);
-        calculatedPreLocation = true;
-        break;
-      case "/portal/map":
-        preLocation = 3;
         calculatedPreLocation = true;
         break;
       case "/contact-us":
@@ -104,7 +90,7 @@ export default function Nav({ slug }: { slug: string }) {
   return (
     <>
       <nav
-        className={`flex flex-col mt-3 p-4 text-white z-[100000] fixed w-screen items-center justify-center`}
+        className={`flex flex-col ${router.asPath === "/" ? 'mt-3' : ''} p-4 text-white z-[100000] fixed w-screen items-center justify-center`}
       >
         <div
           id="container"
@@ -148,7 +134,7 @@ export default function Nav({ slug }: { slug: string }) {
         {router.asPath === "/" && <h1 className="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, omnis?</h1>}
       </nav>
       <div
-        className={`fixed w-[452px] h-1 translate-y-${router.asPath === "/" ? 1 : 5}`}
+        className={`fixed w-[452px] h-1 ${router.asPath === "/" ? 'translate-y-1' : 'translate-y-3'}`}
         style={{ margin: "0 calc((100vw - 452px)/2)" }}
       >
         <div
