@@ -138,11 +138,20 @@ export default function Home() {
     }, 0);
     // setGetDetails(true)
   };
-  useEffect(() => {
-    if(zoom <= 0) {
-      setZoom(0)
-    }
-  }, [zoom])
+  // const switchLabelsOn = () => {
+  //   setTimeout(() => {
+  //     const labels: any = document.querySelector('#__next > main > div.mapContainer > div:nth-child(1) > div > div:nth-child(5) > div > div:nth-child(2) > ul > li')
+  //     const button: any = document.getElementById('B906D274-922E-46AF-AF88-D44565363952')
+  //     if(labels) {
+  //       labels.click()
+  //       // labels.blur()
+  //     } else {
+  //       console.log("button not found")
+  //       switchLabelsOn()
+  //     }
+  //   }, 200)
+  // }
+  // useEffect(switchLabelsOn, [switchLabelsOn])
 
   if (typeof window !== undefined) {
     return (
@@ -176,7 +185,7 @@ export default function Home() {
                 lng: longitude ?? map?.getCenter()?.lng() ?? 0,
               }}
               zoom={zoom}
-              mapTypeId="satellite"
+              mapTypeId="hybrid"
               mapContainerClassName="mapContainer"
               // extraMapTypes={["satellite"]}
             >
