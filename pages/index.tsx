@@ -12,6 +12,7 @@ import Details from "../elements/details";
 import useMergeState from "../hooks/useMergeState";
 import Head from "next/head";
 import { useLoading } from "../hooks/useLoading";
+import Explanation from '../elements/views/explanation';
 
 const libraries: any = ["places"];
 
@@ -138,6 +139,11 @@ export default function Home() {
     }, 0);
     // setGetDetails(true)
   };
+  useEffect(() => {
+    if(zoom <= 0) {
+      setZoom(0)
+    }
+  }, [zoom])
 
   if (typeof window !== undefined) {
     return (
@@ -238,7 +244,7 @@ export default function Home() {
             </GoogleMap>
           </LoadScript>
         </main>
-        <div></div>
+        <Explanation/>
       </>
     );
   } else return <></>;
