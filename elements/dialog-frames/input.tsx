@@ -92,6 +92,7 @@ export default function Input({
           type="tel"
           name="tel"
           id="tel"
+          max={10}
           ref={telRef}
           onChange={(e) =>
             e.target.value.trim()

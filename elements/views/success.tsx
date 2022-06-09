@@ -7,10 +7,11 @@ export default function Success({
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  console.log(open, "open")
     if(open) {
         return (
             <div
-              id="not-supported-container fixed"
+              id="success"
               style={{ height: "calc(100% - 6rem)", zIndex: 9999999999999999999999 }}
               className="w-full h-full absolute z-[9999999999999999999999]"
             >

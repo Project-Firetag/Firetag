@@ -34,8 +34,10 @@ export default function Details({
                 setShowSuccess(false)
             }, 10*1000)
         }
+        console.log("showing sucess", showSuccess)
     }, [showSuccess])
     if(media||open) {
+        console.log("showing sucess", showSuccess)
         return (
             <div
             id="not-supported-container fixed"
@@ -86,6 +88,7 @@ export default function Details({
             </div>
         );
     } else {
+        console.log("showing sucess", showSuccess)
         return (<><Success open={showSuccess} setOpen={setShowSuccess}/></>)
     }
 }

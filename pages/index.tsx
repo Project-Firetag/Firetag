@@ -126,7 +126,7 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [longitude, latitude]);
   const transitionZoom = () => {
-    const interval = 0.35;
+    const interval = 0.1;
     setTimeout(() => {
       for (let i = zoom; i <= 22 + interval; i += interval) {
         setTimeout(() => {
@@ -154,17 +154,6 @@ export default function Home() {
   // }
   // useEffect(switchLabelsOn, [switchLabelsOn])
 
-  useEffect(() => {
-    if(window?.google) {
-      console.log(new window.google.maps.Geocoder().geocode({
-        location: {
-          lat: 3,
-          lng: 3
-        }
-      }))
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
   if (typeof window !== undefined) {
     return (
       <>

@@ -131,7 +131,7 @@ export default function Nav({ slug }: { slug: string }) {
             </div>
           ))}
         </div>
-        {router.asPath === "/" && <h1 className="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, omnis?</h1>}
+        {router.asPath === "/" && <h1 className="pb-3 text-lg">Press on share my location to report a fire</h1>}
       </nav>
       <div
         className={`fixed w-[452px] h-1 ${router.asPath === "/" ? 'translate-y-1' : 'translate-y-3'}`}
