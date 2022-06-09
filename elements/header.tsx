@@ -2,10 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import empty from "../utils/empty";
 import Hamburger from "./hamburger";
 import Nav from "./nav";
 
-export default function Header({ transparent }: { transparent: boolean}) {
+export default function Header({ transparent, blur }: { transparent: boolean, blur: number | null }) {
   const router = useRouter();
   const [dimensions, setDimensions] = useState({
     y: 0,
@@ -25,6 +26,7 @@ export default function Header({ transparent }: { transparent: boolean}) {
     });
     if(transparent) {
       document.addEventListener("scroll", (e) => {
+        empty()
         const scroll = window.scrollY;
         if (scroll !== 0) {
           document.querySelector("header").classList.add("moreBackdropFilter");
@@ -46,10 +48,11 @@ export default function Header({ transparent }: { transparent: boolean}) {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log(blur, "blur")
   return (
     <>
       <header
-        style={{ zIndex: 99999 }}
+        style={{ zIndex: 99999, backdropFilter: `blur(${blur}px)`}}
         className={`h-24 transition-all z-[99999] w-full ${transparent ? 'bg-transparent' : 'bg-[#161c24]'} border-b-[3px] ${router.asPath === "/" ? "border-[#00a4ac94]" : "border-[#00a3ac]"} fixed flex items-center justify-between`}
       >
         <button

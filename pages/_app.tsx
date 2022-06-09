@@ -12,7 +12,9 @@ function MyApp({ Component, pageProps }) {
     document.getElementsByTagName("html")[0].style.backgroundColor = "#161c24"
   }, [])
   const title: string = Component.title ?? null;
-  const transparent = Boolean(Component.transparent)
+  const transparent = Boolean(Component.transparent);
+  const blur: null | number = Component.blur ?? null;
+  console.log(Component.transparent)
   return (
     <>
       <Head>
@@ -22,7 +24,7 @@ function MyApp({ Component, pageProps }) {
         {title && <title>{title}</title>}
       </Head>
       <NextProgress delay={0} options={{ showSpinner: false }} />
-      <Header transparent={transparent}/>
+      <Header blur={blur} transparent={transparent}/>
       <RecoilRoot>
         <Loading/>
         <Component {...pageProps} />

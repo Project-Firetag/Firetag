@@ -8,8 +8,8 @@ export default function Login() {
     login(email, password)
   }
   return (
-    <main className="w-screen overflow-hidden" style={{height: "calc(100vh)"}}>
-        <section className="absolute w-full h-full" style={{height: "calc(100vh - 94px)"}}>
+    <main className="w-screen overflow-hidden pt-0" style={{height: "calc(100vh)"}}>
+        <section className="absolute w-full h-full" style={{height: "calc(100vh)"}}>
           <div
             className="absolute top-0 w-full h-full bg-gray-900"
             style={{
@@ -22,10 +22,10 @@ export default function Login() {
           <div className="container mx-auto px-4 h-full">
             <div className="flex content-center items-center justify-center h-full">
               <div className="w-full lg:w-4/12 px-4">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
+                <div className="relative top-[70.5px] flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
                   <div className="rounded-t mb-0 px-6 pt-6 pb-3">
                     <div className="text-center mb-3">
-                      <h6 className="text-gray-600 text-xl font-bold">
+                      <h6 className="text-gray-600 text-4xl font-bold">
                         Log in
                       </h6>
                     </div>
@@ -103,9 +103,6 @@ export default function Login() {
 }
 
 Login.title = `Firetag - Login`
-Login.transperant = `Firetag - Login`
+Login.transparent = true
 
-/*
-Purpouse - user report forest fires.
-Fireman, media - see the stats and the reports
-*/
+Login.blur = 5;

@@ -36,7 +36,7 @@ function First() {
                 width={140*2}
                 height={80*2} />
                 <h1 style={{fontFamily: "'Poppins'"}} className="text-[3.5rem] text-center mt-4">A Company that saves the planet and lives</h1>
-                <p className="px-24 mt-20 text-justify text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil id impedit ut laborum dignissimos reiciendis qui tempore iusto placeat optio tenetur, ipsam consequuntur quae, incidunt, ab possimus dolorum velit facere. Praesentium placeat nesciunt quo iste obcaecati nisi commodi ratione, unde animi earum impedit soluta sequi mollitia rem ipsam consequatur, voluptatibus cumque, tempora illum quasi. Molestias, doloremque, corporis illo ipsa optio, consequatur eaque iusto placeat est obcaecati nostrum molestiae consectetur in? Dignissimos, culpa. Animi alias veritatis accusamus aliquid ad voluptatum ex inventore qui quia iusto reprehenderit laborum, placeat magnam. Id dolorem dolore voluptatum illo, explicabo hic sed aliquam facere deserunt itaque!</p>
+                <p className="px-24 mt-20 text-justify text-white"> Our project establishes a connection between the fire reporters and the firemen directly through our service of an application. This allows us to curb the fires and restrict the damage caused in the open forest with our efficient reporting method and technique.  Looking at the rising levels of forest fires, we believe that this is the best time for such a project to be launched.</p>
             </div>
         </div>
     )
