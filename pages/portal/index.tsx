@@ -121,7 +121,13 @@ export default function Portal({
     console.log(graphData)
     const [data, setData] = useState(recentIncidents)
     return (
-        <main className={`w-full pt-28 p-4 pl-4 flex items-start min-h-screen justify-evenly bg-[#161c24] ${dimensions.x < 1150 ? "flex-col items-center" : "flex-row"} ${dimensions.x < 600 ? "pt-[500px] relative h-[1100px]" : ""}`}>
+        <>
+        <button
+        onClick={() => router.push("/portal/map")}
+                className="bg-[#00a3ac] w-full p-4 pt-2 pb-2 mb-5 mt-[6rem] hover:bg-[#035f7b] rounded-b-[8px] transition-all text-white font-bold text-base"
+            >View Map</button>
+        <main className={`w-full p-4 pl-4 flex items-start min-h-screen justify-evenly bg-[#161c24] ${dimensions.x < 1150 ? "flex-col items-center" : "flex-row"} ${dimensions.x < 600 ? "pt-[500px] relative h-[1100px]" : ""}`}>
+            
             <div id="main-table" className={`w-[40%] flex justify-start items-center flex-col ${dimensions.x < 600 ? "scale-[0.7] relative -top-[110px]" : ""}`}>
                 <h2 className="w-[28rem] text-white text-center text-xl font-bold">Incidents/Reports</h2>
                 <br />
@@ -239,6 +245,7 @@ export default function Portal({
                 </div>
             </div>
         </main>
+        </>
         // <h1></h1>
     )
 }

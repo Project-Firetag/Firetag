@@ -71,7 +71,7 @@ export default function Map({
                         lng: 78.0882,
                     }}
                     zoom={5}
-                    mapTypeId='satellite'
+                    mapTypeId='hybrid'
                     
                 >
                     {

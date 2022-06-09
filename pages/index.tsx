@@ -188,6 +188,17 @@ export default function Home() {
               zoom={zoom}
               mapTypeId="hybrid"
               mapContainerClassName="mapContainer"
+              // options={{
+              //   restriction: {
+              //     latLngBounds: {
+              //       north: 90, // Mumbai
+              //       south: -90, // Pune
+              //       west: -180,  // Mumbai
+              //       east: 180,  // Pune
+              //    },
+              //    strictBounds: true,
+              //   }
+              // }}
               // extraMapTypes={["satellite"]}
             >
               {/* Child components, such as markers, info windows, etc. */}

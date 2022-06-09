@@ -52,7 +52,7 @@ export default function Header({ transparent, blur }: { transparent: boolean, bl
   return (
     <>
       <header
-        style={{ zIndex: 99999, backdropFilter: `blur(${blur}px)`}}
+        style={{ zIndex: 99999, backdropFilter: `blur(${blur || 10}px)`}}
         className={`h-24 transition-all z-[99999] w-full ${transparent ? 'bg-transparent' : 'bg-[#161c24]'} border-b-[3px] ${router.asPath === "/" ? "border-[#00a4ac94]" : "border-[#00a3ac]"} fixed flex items-center justify-between`}
       >
         <button
