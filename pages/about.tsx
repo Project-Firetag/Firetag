@@ -36,7 +36,7 @@ function First() {
                 width={140*2}
                 height={80*2} />
                 <h1 style={{fontFamily: "'Poppins'"}} className="text-[3.5rem] text-center mt-4">A Company that saves the planet and lives</h1>
-                <p className="px-24 mt-20 text-justify text-white"> Our project establishes a connection between the fire reporters and the firemen directly through our service of an application. This allows us to curb the fires and restrict the damage caused in the open forest with our efficient reporting method and technique.  Looking at the rising levels of forest fires, we believe that this is the best time for such a project to be launched.</p>
+                <p className="px-24 mt-20 text-justify text-white text-xl"> Our project establishes a connection between the fire reporters and the firemen directly through our service of an application. This allows us to curb the fires and restrict the damage caused in the open forest with our efficient reporting method and technique.  Looking at the rising levels of forest fires, we believe that this is the best time for such a project to be launched.</p>
             </div>
         </div>
     )
@@ -53,7 +53,14 @@ function Second() {
             <h1 style={{fontFamily: "'Poppins'"}} className="text-[3.5rem] text-[antiquewhite] text-center mt-14 mb-12">There&apos;s just the three of us...</h1>
             <div id="avatar-container" className="flex items-center justify-evenly h-[30rem] w-screen px-10">
                 <div className="anAvatar w-[20rem] h-full flex flex-col items-center justify-evenly">
-                    <Image src="/avatar.png" alt={`${""} avatar`} width={360*0.55} height={393*0.55} layout={`intrinsic`}/>
+                    <img className="rounded-full" src="/amrit.jpeg" alt={`amrit`} width={576*0.4} height={754*0.4}/>
+                    <h3 className="text-5xl font-kdam text-orange-400">Amrit</h3>
+                    <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum dolor.</h4>
+                    <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
+                    <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
+                </div>
+                <div className="anAvatar w-[20rem] h-full flex flex-col items-center justify-evenly">
+                    <img className="rounded-full" src="/tejas.jpeg" alt={`tejas`} width={360*0.6} height={393*0.6}/>
                     <h3 className="text-5xl font-kdam text-orange-400">Name</h3>
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum dolor.</h4>
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
@@ -61,14 +68,7 @@ function Second() {
                 </div>
                 <div className="anAvatar w-[20rem] h-full flex flex-col items-center justify-evenly">
                     <Image src="/avatar.png" alt={`${""} avatar`} width={360*0.55} height={393*0.55} layout={`intrinsic`}/>
-                    <h3 className="text-5xl font-kdam text-orange-400">Name</h3>
-                    <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum dolor.</h4>
-                    <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
-                    <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
-                </div>
-                <div className="anAvatar w-[20rem] h-full flex flex-col items-center justify-evenly">
-                    <Image src="/avatar.png" alt={`${""} avatar`} width={360*0.55} height={393*0.55} layout={`intrinsic`}/>
-                    <h3 className="text-5xl font-kdam text-orange-400">Name</h3>
+                    <h3 className="text-5xl font-kdam text-orange-400">Kabir</h3>
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum dolor.</h4>
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
