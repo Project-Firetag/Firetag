@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "project": "concurrently \"next dev\" \"ngrok http 3000\"",
-    "lint": "next lint"
+    "lint": "next lint",
+    "host": "vercel"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.10.2",
