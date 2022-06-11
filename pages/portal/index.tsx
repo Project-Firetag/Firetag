@@ -125,7 +125,7 @@ export default function Portal({
         <button
         onClick={() => router.push("/portal/map")}
                 className="bg-[#00a3ac] w-full p-4 pt-2 pb-2 mb-5 mt-[6rem] hover:bg-[#035f7b] rounded-b-[8px] transition-all text-white font-bold text-base"
-            >View Map</button>
+            >View Map </button>
         <main className={`w-full p-4 pl-4 flex items-start min-h-screen justify-evenly bg-[#161c24] ${dimensions.x < 1150 ? "flex-col items-center" : "flex-row"} ${dimensions.x < 600 ? "pt-[500px] relative h-[1100px]" : ""}`}>
             
             <div id="main-table" className={`w-[40%] flex justify-start items-center flex-col ${dimensions.x < 600 ? "scale-[0.7] relative -top-[110px]" : ""}`}>
