@@ -10,17 +10,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@mui/material": "^5.8.1",
     "@react-google-maps/api": "^2.10.2",
     "axios": "^0.27.2",
     "faunadb": "^4.5.4",
     "filestack-js": "^3.25.0",
     "firebase": "^9.8.2",
-    "magic-sdk": "^8.1.1",
     "moment": "^2.29.3",
-    "mui": "^0.0.1",
     "next": "12.1.5",
     "next-progress": "^2.2.0",
     "next-pwa": "^5.5.2",
@@ -29,7 +24,6 @@
     "react-dom": "17.0.2",
     "recharts": "^2.1.9",
     "recoil": "^0.7.3",
-    "scroll-snap": "^4.0.3",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
