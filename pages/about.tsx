@@ -59,15 +59,15 @@ function Second() {
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
                 </div>
                 <div className="anAvatar w-[20rem] h-full flex flex-col items-center justify-evenly">
-                    <img className="rounded-full" src="/tejas.jpeg" alt={`tejas`} width={360*0.6} height={393*0.6}/>
-                    <h3 className="text-5xl font-kdam text-orange-400">Name</h3>
+                    <img className="rounded-full" src="/kabir.jpeg" alt={`tejas`} width={770*0.35} height={1024*0.35}/>
+                    <h3 className="text-5xl font-kdam text-orange-400">Kabir</h3>
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum dolor.</h4>
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
                 </div>
                 <div className="anAvatar w-[20rem] h-full flex flex-col items-center justify-evenly">
-                    <Image src="/avatar.png" alt={`${""} avatar`} width={360*0.55} height={393*0.55} layout={`intrinsic`}/>
-                    <h3 className="text-5xl font-kdam text-orange-400">Kabir</h3>
+                <img className="rounded-full" src="/tejas.jpeg" alt={`tejas`} width={360*0.6} height={393*0.6}/>
+                    <h3 className="text-5xl font-kdam text-orange-400">Tejas</h3>
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum dolor.</h4>
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
                     <h4 className="font-dancing text-4xl text-orange-600">Lorem, ipsum.</h4>
